@@ -6,8 +6,6 @@
 </div>
 <!--PreLoader Ends-->
 
-<app-header></app-header>
-
 <!-- search area -->
 <div class="search-area">
     <div class="container">
@@ -51,7 +49,6 @@
 <!-- features list section -->
 <div class="list-section pt-80 pb-80">
     <div class="container">
-
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
                 <div class="list-box d-flex align-items-center">
@@ -103,19 +100,19 @@
                 </div>
             </div>
         </div>
-
+        <a href="#" class="boxed-btn centred-button">Add New Product</a>
         <div class="row">
-            <div class="col-lg-4 col-md-6 text-center">
+            <div *ngFor="let product of products" class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
                         <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
                     </div>
-                    <h3>Strawberry</h3>
-                    <p class="product-price"><span>Per Kg</span> 85$ </p>
+                    <h3>{{product?.name}}</h3>
+                    <p class="product-price"><span>Per Kg</span> {{product.price}} </p>
                     <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 text-center">
+            <!-- <div class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
                         <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
@@ -124,7 +121,7 @@
                     <p class="product-price"><span>Per Kg</span> 70$ </p>
                     <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
-            </div>
+            </div> -->
             <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
                 <div class="single-product-item">
                     <div class="product-image">
@@ -139,5 +136,3 @@
     </div>
 </div>
 <!-- end product section -->
-
-<app-footer></app-footer>

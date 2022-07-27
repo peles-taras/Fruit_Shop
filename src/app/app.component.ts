@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component,OnInit} from '@angular/core';
+import { Product } from './product';
+import { ProductService } from './product.service';
+
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: [
-
-
-]
+  styleUrls: []
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'FruitShop';
+
+  ngOnInit() {
+  }
 }

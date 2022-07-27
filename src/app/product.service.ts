@@ -25,11 +25,11 @@ export class ProductService {
     return this.http.get<Product[]>(`${this.apiServerUrl}/product/all`);
   }
 
-  public updateUser(product: Product): Observable<Product> {
+  public updateProduct(product: Product): Observable<Product> {
     return this.http.put<Product>(`${this.apiServerUrl}/product/update`, product);
   }
 
-  public deleteUser(id: number): Observable<void> {
+  public deleteProduct(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiServerUrl}/product/delete/${id}`);
   }
 

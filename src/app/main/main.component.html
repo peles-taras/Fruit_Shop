@@ -94,41 +94,28 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 offset-lg-2 text-center">
-                <div class="section-title">	
+                <div class="section-title">
                     <h3><span class="orange-text">Our</span> Products</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet beatae optio.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid, fuga quas itaque eveniet
+                        beatae optio.</p>
                 </div>
             </div>
         </div>
-        <a href="#" class="boxed-btn centred-button">Add New Product</a>
-        <div class="row">
+        <button type="button" class="boxed-btn centred-button" data-toggle="modal"
+            data-target="#exampleModal">
+            Add New Product
+        </button>
+        <div class="row" id="product-main-container">
             <div *ngFor="let product of products" class="col-lg-4 col-md-6 text-center">
                 <div class="single-product-item">
+
                     <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
+                        <a (click)="onOpenModal(product, 'delete')" class="fas product-icon" style="top: 5px; right:30px; color:#F28123">&#10006;</a>
+                        <a (click)="onOpenModal(product, 'update')" class="fas product-icon" style="top: 5px; right:55px; color:#F28123">&#xf044;</a>
+                        <a [routerLink]="['/products', product.id]"><img src="assets/img/products/product-img-1.jpg" alt=""></a>
                     </div>
                     <h3>{{product?.name}}</h3>
-                    <p class="product-price"><span>Per Kg</span> {{product.price}} </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div>
-            <!-- <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-2.jpg" alt=""></a>
-                    </div>
-                    <h3>Berry</h3>
-                    <p class="product-price"><span>Per Kg</span> 70$ </p>
-                    <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
-                </div>
-            </div> -->
-            <div class="col-lg-4 col-md-6 offset-md-3 offset-lg-0 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        <a href="single-product.html"><img src="assets/img/products/product-img-3.jpg" alt=""></a>
-                    </div>
-                    <h3>Lemon</h3>
-                    <p class="product-price"><span>Per Kg</span> 35$ </p>
+                    <p class="product-price"><span>Per Kg</span> {{product.price | currency:"USD": "symbol":"1.2-2"}} </p>
                     <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
                 </div>
             </div>
@@ -136,3 +123,146 @@
     </div>
 </div>
 <!-- end product section -->
+
+<!--Add product Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="column" id="main">
+                    <h1>New prodouct</h1>
+                    <form #addForm="ngForm" (ngSubmit)="onAddProduct(addForm)">
+                        <div class="form-group">
+                            <label for="exampleInputName">Name</label>
+                            <input type="text" ngModel name="name" required class="form-control modal-input" id="exampleInputName" placeholder="Product name">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputName">Image</label>
+                            <input type="text" ngModel name="image" required class="form-control modal-input" id="exampleInputName" placeholder="Image URL">
+                        </div>
+<!-- 
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Description</label>
+                            <textarea type="textarea" ngModel name="description" required class="form-control modal-input" id="exampleInputPassword1"
+                                placeholder="Enter description here.."></textarea>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="price-label" for="exampleInputEmail1">Price</label>
+                            <input type="number" ngModel name="price" required class="form-control modal-input input-centred" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                        </div>
+                        <button type="button" id="form-close" class="d-none" data-dismiss="modal">Close</button>
+                        <button type="submit"  [disabled]="addForm.invalid" id="add-product-form" class="boxed-btn centred-button modal-button">ADD</button>
+                    </form>
+                </div>
+                <div>
+                    <svg width="67px" height="578px" viewBox="0 0 67 578" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Path</title>
+                        <desc>Created with Sketch.</desc>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path
+                                d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z"
+                                id="Path" fill="#F9BC35"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--update Modal -->
+<div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="productUpdateModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="column" id="main">
+                    <h1>Update prodouct</h1>
+                    <form #updateForm="ngForm">
+
+
+                            <input type="hidden" ngModel="{{updateProduct?.id}}" name="id" required class="form-control modal-input" id="exampleInputName" placeholder="{{updateProduct?.id}}">
+
+
+                        <div class="form-group">
+                            <label for="exampleInputName">Name</label>
+                            <input type="text" ngModel="{{updateProduct?.name}}" name="name" required class="form-control modal-input" id="exampleInputName" placeholder="{{updateProduct?.name}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputName">Image</label>
+                            <input type="text" ngModel="{{updateProduct?.image}}" name="image" required class="form-control modal-input" id="exampleInputName" placeholder="{{updateProduct?.image}}">
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="exampleInputPassword1">Description</label>
+                            <textarea type="textarea" ngModel="{{updateProduct?.description}}" name="description" required class="form-control modal-input" id="exampleInputPassword1"
+                                placeholder="{{updateProduct?.description}}"></textarea>
+                        </div> -->
+
+                        <div class="form-group">
+                            <label class="price-label" for="exampleInputEmail1">Price</label>
+                            <input type="number" ngModel="{{updateProduct?.price}}" name="price" required class="form-control modal-input input-centred" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="{{updateProduct?.price}}">
+                        </div>
+                        <button type="button" id="form-close-update" class="d-none" data-dismiss="modal">Close</button>
+                        <button type="submit" (click)="onUpdateProduct(updateForm.value)" id="add-product-form" class="boxed-btn centred-button modal-button">UPDATE</button>
+                    </form>
+                </div>
+                <div>
+                    <svg width="67px" height="578px" viewBox="0 0 67 578" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Path</title>
+                        <desc>Created with Sketch.</desc>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path
+                                d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z"
+                                id="Path" fill="#F9BC35"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--delete Modal -->
+<div class="modal fade" id="deleteProductModal" tabindex="-1" role="dialog" aria-labelledby="productUpdateModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="column" id="main">
+                    <h1>Delete prodouct</h1>
+
+                        <div class="form-group">
+                            <h3>ARE YOU SURE YOU WANT TO DELETE {{deleteProduct?.name}}?</h3>
+                        </div>
+
+
+                        <button type="button" id="form-close-delete" class="d-none" data-dismiss="modal">Close</button>
+                        <button (click)="onDeleteProduct(deleteProduct?.id)" id="add-product-form" class="boxed-btn centred-button modal-button">DELETE</button>
+                </div>
+                <div>
+                    <svg width="67px" height="578px" viewBox="0 0 67 578" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <title>Path</title>
+                        <desc>Created with Sketch.</desc>
+                        <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                            <path
+                                d="M11.3847656,-5.68434189e-14 C-7.44726562,36.7213542 5.14322917,126.757812 49.15625,270.109375 C70.9827986,341.199016 54.8877465,443.829224 0.87109375,578 L67,578 L67,-5.68434189e-14 L11.3847656,-5.68434189e-14 Z"
+                                id="Path" fill="#F9BC35"></path>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

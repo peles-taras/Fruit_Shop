@@ -2758,4 +2758,60 @@ table.order-details tbody td {
 .centred-button{
   margin-top: 1px;
   margin-bottom: 25px;
+  transition: 0.3s;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  display: inline-block;
+  background-color: #F28123;
+  color: #fff;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+}
+
+    .centred-button:hover{
+    background-color: #051922;
+    color: #F28123;
+    }
+    .centred-button:focus{
+      background-color: #051922;
+      color: #F28123;
+      }
+.modal-button{
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding: 3px 20px;
+}
+.product-icon{
+  color:#F28123;
+  font-size:14pt;
+  position: absolute;
+  transition: 0.3s;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+.product-icon:hover{
+transform: scale(1.5);
+}
+.login-signup-icons{
+  position: absolute;
+}
+.header-icons{
+  display: flex;
+  margin-left: 80px;
+}
+.login-btn, .signup-btn{
+width: 125px;
+}
+.signup-btn{
+  margin-left: 30px;
+
+}
+.signup-btn:hover{
+  color: white;
 }

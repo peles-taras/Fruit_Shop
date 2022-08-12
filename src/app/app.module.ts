@@ -1,28 +1,27 @@
-import { ProductService } from './product.service';
+import { MainComponent } from './main/main.component';
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainComponent } from './main/main.component';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared/shared.module';
+import { ProductModule } from './product/product.module';
+import { UserModule } from './user/user.module';
+import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    MainComponent,
-    HeaderComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule, FormsModule
+    RouterModule.forRoot([
+      {path: "", component: MainComponent, pathMatch: 'full'},
+      {path: "**", component: MainComponent, pathMatch: 'full'}]),
+    HttpClientModule,SharedModule, UserModule, ProductModule
   ],
-  providers: [ProductService],
-  bootstrap: [AppComponent, MainComponent,HeaderComponent,FooterComponent]
+  providers: [],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

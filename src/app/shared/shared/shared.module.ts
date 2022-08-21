@@ -1,3 +1,4 @@
+import { UserModule } from './../../user/user.module';
 import { SignUpComponent } from './../../sign-up/sign-up.component';
 import { LoginComponent } from './../../login/login.component';
 import { RouterModule } from '@angular/router';
@@ -9,8 +10,6 @@ import { HeaderComponent } from 'src/app/header/header.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -20,8 +19,6 @@ import { HeaderComponent } from 'src/app/header/header.component';
     ])
   ],
   exports:[
-    HeaderComponent,
-    FooterComponent,
     FormsModule,
     CommonModule
   ]

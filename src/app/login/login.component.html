@@ -1,5 +1,19 @@
-<div class="login-form-wrapper">
-<form>
-
-</form>
-</div>
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg" style="padding: 0px; padding-top: 95px">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+    <div class="user">  
+        <form class="form" #loginForm="ngForm" (ngSubmit)="loginUser(loginForm)" style="height: 400px;">
+                <input type="email" ngModel required name="email" placeholder="Email" class="form__input first_input" />
+                <input type="password" ngModel required name="password" placeholder="Password" class="form__input" />    
+            <button class="btn" (click)="addNewUser()" type="submit">Log in</button>
+        </form>
+    </div>

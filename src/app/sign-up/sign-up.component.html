@@ -1,9 +1,21 @@
-<div class="sign-up-wrapper">
-    <form action="">
- <input name="email" type="email">
- <input name="firstName" type="text">
- <input name="lastName" type="text">
- <input name="password" type="password">
- <input name="cpassword" type="password">
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg" style="padding: 0px; padding-top: 95px">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+<div class="user">  
+    <form class="form" #signUpForm="ngForm" (ngSubmit)="saveUser(signUpForm)"  style="height: 600px;">
+            <input type="email" ngModel required name="email" placeholder="Email" class="form__input first_input" />
+            <input type="text" ngModel required  name="firstName" placeholder="First Name" class="form__input" />
+            <input type="text" ngModel required  name="lastName" placeholder="Last Name" class="form__input" />
+            <input type="password" ngModel required  name="password" placeholder="Password" class="form__input" />    
+        <button class="btn" [disabled]="signUpForm.invalid" type="submit">SIGN-UP</button>
     </form>
 </div>

@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,40 +18,35 @@ import com.fruit.shop.serviceImpl.UserServiceImpl;
 @RequestMapping("/user")
 public class UserController {
 
-	private final UserServiceImpl userService;
+	private final UserServiceImpl userServiceImpl;
 
 	@Autowired
-	public UserController(UserServiceImpl userService) {
-		this.userService = userService;
+	public UserController(UserServiceImpl userServiceImpl) {
+		this.userServiceImpl = userServiceImpl;
 	}
 
-	@PostMapping("/save")
-	public ResponseEntity<User> saveUser(@RequestBody User user) {
-		User saveUser = userService.saveUser(user);
-		return new ResponseEntity<>(saveUser, HttpStatus.CREATED);
-	}
 
 	@GetMapping("/find/{id}")
 	public ResponseEntity<User> getUserByid(@PathVariable("id") Long id) {
-		User user = userService.findUserById(id);
+		User user = userServiceImpl.findUserById(id);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 	
 	@GetMapping("/get/{email}")
 	public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email) {
-		User user = userService.findUserByEmail(email);
+		User user = userServiceImpl.findUserByEmail(email);
 		return new ResponseEntity<>(user, HttpStatus.OK);
 	}
 
 	@PutMapping("/update")
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		User updateUser = userService.updateUser(user);
+		User updateUser = userServiceImpl.updateUser(user);
 		return new ResponseEntity<>(updateUser, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteUser(@PathVariable("id") Long id) {
-		userService.deleteUserById(id);
+		userServiceImpl.deleteUserById(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

@@ -11,7 +11,7 @@ import com.fruit.shop.service.ProductService;
 @Service
 public class ProductServiceImpl {
 
-	private ProductService productService;
+	private final ProductService productService;
 
 	@Autowired
 	public ProductServiceImpl(ProductService productService) {

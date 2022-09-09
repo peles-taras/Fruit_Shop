@@ -1,48 +1,57 @@
 package com.fruit.shop.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "user")
-@Getter @Setter @NoArgsConstructor @AllArgsConstructor @ToString @EqualsAndHashCode 
-public class User{
+ @Data @NoArgsConstructor @AllArgsConstructor
+public class User implements Serializable{
+
+	private static final long serialVersionUID = -8082993038272780116L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@Column
 	private String email;
 
-	@Column
 	private String firstName;
 
-	@Column
-	 private String lastName;
+	private String lastName;
 
-	@Column
+	@JsonIgnore
 	private String password;
 	
-	@Enumerated(EnumType.STRING)
-	private UserRole role;	
-	
+	@ManyToMany(fetch = FetchType.EAGER)
+	private List<Role> roles = new ArrayList<>();
+
 	@OneToOne(cascade = CascadeType.ALL)
 	private Bucket bucket;
 
+	
+	public User(String email, String firstName, String lastName, String password) {
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+	}
+	
 }

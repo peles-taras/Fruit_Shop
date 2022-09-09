@@ -1,5 +1,7 @@
 package com.fruit.shop.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +26,8 @@ public class UserService {
 		return userRepo.getReferenceById(id);
 	}
 
-	public User findUserByEmail(String email) {
-		return userRepo.findUserByEmail(email);
+	public Optional<User> findUserByEmail(String email) {
+		return Optional.of(userRepo.findUserByEmail(email).get());
 	}
 	
 	public User updateUser(User user) {

@@ -1,1 +1,1 @@
-Fruit Shop application. Allows user to create an account and make an simple order. Application is made with Angular and Java REST API.
+A web application built with Java and Angular. The ultimate online fruit shopping experience. Application allows users to authenticate for a personalized shopping experience, browse a range of products, and place orders with ease. With user-friendly interface, you can easily search and select your desired fruits, while the administrator handles product and order management.
